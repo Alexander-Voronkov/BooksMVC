@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Book>;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+<table class="table table-striped">
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>
+                <a asp-action="BookDetails" asp-route-id="@item.Id" class="btn btn-primary p-2">Details</a>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-action="AddBook" class="btn btn-warning">Add new book</a>
+</div>

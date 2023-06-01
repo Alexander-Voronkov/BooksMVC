@@ -1,0 +1,19 @@
+﻿@model EditBookVM;
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h1 class="text-center">Book edit</h1>
+<form class="form" asp-action="BookEdit" enctype="multipart/form-data">
+    <input class="form-control" type="hidden" asp-for="@Model.Id"/>
+    <label asp-for="@Model.Title"></label>
+    <input class="form-control" type="text" asp-for="@Model.Title"/>
+    <label asp-for="@Model.Style"></label>
+    <input class="form-control" type="text" asp-for="@Model.Style"/>
+    <label asp-for="@Model.PublishDate"></label>
+    <input class="form-control" type="date" asp-for="@Model.PublishDate"/>
+    <input class="form-control" id="CoverPick" type="file" asp-for="@Model.TempCover" accept="image/png, image/jpeg"/>
+    <img style="display:block" id="BookCover" width="100" src="data:image/png;base64, @(Convert.ToBase64String(@Model.Cover))" />
+    <button class="btn btn-warning" id="editbtn">Edit</button>
+</form>
+

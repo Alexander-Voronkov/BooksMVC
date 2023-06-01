@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+
+<h1 class="text-center">Add book</h1>
+<form class="form" method="post" asp-action="BookEdit" enctype="multipart/form-data">
+    <input class="form-control" type="hidden" name="Id" id="Id" />
+    <label for="Title">Title</label>
+    <input class="form-control" type="text" name="Title" id="Title" />
+    <label for="Style">Style</label>
+    <input class="form-control" type="text" name="Style" id="Style" />
+    <label for="PublishDate">PublishDate</label>
+    <input class="form-control" type="date" name="PublishDate" id = "PublishDate"/>
+    <input id="CoverPick" class="form-control" type="file" name="TempCover" accept="image/png, image/jpeg"/>
+    <img id="BookCover" style="display:block" width="100" />
+    <button class="btn btn-warning">Add book</button>
+</form>

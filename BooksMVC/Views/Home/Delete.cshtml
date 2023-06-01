@@ -1,0 +1,47 @@
+﻿@model Book;
+@{
+    ViewData["Title"] = "Delete";
+    string cover = string.Empty;
+    if (Model.Cover != null)
+    {
+        cover = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Cover));
+    }
+}
+
+<h1>Are you sure you want to delete this book?</h1>
+
+<div class="text-center">
+    <table class="table table-striped">
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>Style</td>
+            <td>Publish Date</td>
+            <td>Cover</td>
+            <td>Authors</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Title</td>
+            <td>@Model.Style</td>
+            <td>@Model.PublishDate?.ToShortDateString()</td>
+            <td><img width="100" height="100" src="@cover"></img></td>
+            <td>
+                @foreach (var author in Model.Authors)
+                {
+                    <strong>@author.Name</strong>
+                }
+            </td>
+            <td>
+                <form method="post" asp-action="Delete">
+                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                    <input type="hidden" asp-for="@Model.Id"/>
+                    <input type="submit" class="btn btn-danger p-2" value="Delete"/>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+

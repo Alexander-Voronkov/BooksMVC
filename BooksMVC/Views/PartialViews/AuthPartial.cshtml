@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Authentication
+
+@if (User.Identity.IsAuthenticated)
+{
+    <li class="nav-item ms-auto">
+        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+            <button type="submit" class="nav-link btn btn-info px-5">Выход</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item ms-auto">
+        <a asp-controller="Account" asp-action="Login" class="nav-link btn btn-info px-5">Вход</a>
+    </li>
+}

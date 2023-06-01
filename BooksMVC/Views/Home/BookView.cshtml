@@ -1,0 +1,41 @@
+﻿@model Book;
+@{
+    ViewData["Title"] = "Details";
+    string cover = string.Empty;
+    if (Model.Cover != null)
+    {
+        cover = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Cover));
+    }
+}
+
+<div class="text-center">
+<table class="table table-striped">
+    <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Style</td>
+        <td>Publish Date</td>
+        <td>Cover</td>
+        <td>Authors</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Title</td>
+        <td>@Model.Style</td>
+        <td>@Model.PublishDate?.ToShortDateString()</td>
+        <td><img width="100" height="100" src="@cover"></img></td>
+        <td>
+        @foreach (var author in Model.Authors)
+        {
+            <strong>@author.Name</strong>
+        }
+        </td>
+        <td>
+            <a asp-action="BookEdit" asp-route-id="@Model.Id" class="btn btn-primary p-2">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger p-2">Delete</a>
+        </td>
+
+    </tr>
+</table>
+</div>
